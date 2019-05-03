@@ -105,8 +105,7 @@ int crypto_sign_keypair(unsigned char *pk, unsigned char *sk, const unsigned cha
   polyveck s2, t, t1, t0;
 
   /* Expand 32 bytes of randomness into rho, rhoprime and key */
-  //randombytes(seedbuf, 3*SEEDBYTES);
-  memcpy(seedbuf,seed,SEEDBYTES);
+  memcpy(seedbuf, seed, SEEDBYTES);
   rho = seedbuf;
   rhoprime = seedbuf + SEEDBYTES;
   key = seedbuf + 2*SEEDBYTES;

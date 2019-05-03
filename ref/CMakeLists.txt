@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.2)
+cmake_minimum_required(VERSION 3.10)
 project(dilithium)
 
 set(CMAKE_C_STANDARD 11)
@@ -27,14 +27,21 @@ if(STATIC AND NOT IOS)
 endif()
 
 set(dilithium_headers
-        config.h api.h params.h sign.h polyvec.h poly.h packing.h ntt.h reduce.h rounding.h symmetric.h randombytes.h)
+        config.h api.h params.h sign.h polyvec.h poly.h packing.h ntt.h reduce.h rounding.h symmetric.h rng.h)
 
 set(dilithium_sources
-        sign.c polyvec.c poly.c packing.c ntt.c reduce.c rounding.c fips202.c aes256ctr.c randombytes.c)
+        sign.c polyvec.c poly.c packing.c ntt.c reduce.c rounding.c fips202.c aes256ctr.c rng.c)
 
 
 add_library(dilithium
         ${dilithium_headers}
         ${dilithium_sources})
 
-target_link_libraries(dilithium ${OPENSSL_LIBRARIES})
+target_link_libraries(dilithium
+        PUBLIC
+        epee
+        ${OPENSSL_LIBRARIES}
+        ${Boost_SYSTEM_LIBRARY}
+        ${SODIUM_LIBRARY}
+        PRIVATE
+        ${EXTRA_LIBRARIES})

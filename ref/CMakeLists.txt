@@ -1,9 +1,8 @@
 cmake_minimum_required(VERSION 3.2)
 project(dilithium)
 
-set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD 14)
 set(CMAKE_C_STANDARD_REQUIRED ON)
-set(CMAKE_C_COMPILER "/usr/bin/cc")
 set(NIST_FLAGS "-march=native -mtune=native -O3 -fomit-frame-pointer -fPIC")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DMODE=3 -Wall -Wextra -march=native -mtune=native -O3 -fomit-frame-pointer ${NIST_FLAGS}")
 
@@ -30,13 +29,11 @@ set(dilithium_headers
         config.h api.h params.h sign.h polyvec.h poly.h packing.h ntt.h reduce.h rounding.h symmetric.h aes256ctr.c)
 
 set(dilithium_sources
-        sign.c polyvec.c packing.c poly.c reduce.c ntt.c rounding.c fips202.c randombytes.c aes256ctr.c)
+        config.h api.h params.h sign.h polyvec.h poly.h packing.h ntt.h reduce.h rounding.h symmetric.h randombytes.h aes256ctr.h fips202.h)
+
 
 add_library(dilithium
         ${dilithium_headers}
         ${dilithium_sources})
 
 target_link_libraries(dilithium ${OPENSSL_LIBRARIES})
-
-
-

@@ -7,6 +7,7 @@
 #include "poly.h"
 #include "polyvec.h"
 #include "packing.h"
+#include <string.h>
 
 /*************************************************
 * Name:        expand_mat
@@ -93,7 +94,7 @@ void challenge(poly *c,
 *
 * Returns 0 (success)
 **************************************************/
-int crypto_sign_keypair(unsigned char *pk, unsigned char *sk) {
+int crypto_sign_keypair(unsigned char *pk, unsigned char *sk, const unsigned char *seed) {
   unsigned int i;
   unsigned char seedbuf[3*SEEDBYTES];
   unsigned char tr[CRHBYTES];
@@ -104,7 +105,7 @@ int crypto_sign_keypair(unsigned char *pk, unsigned char *sk) {
   polyveck s2, t, t1, t0;
 
   /* Expand 32 bytes of randomness into rho, rhoprime and key */
-  randombytes(seedbuf, 3*SEEDBYTES);
+  memcpy(seedbuf, seed, SEEDBYTES);
   rho = seedbuf;
   rhoprime = seedbuf + SEEDBYTES;
   key = seedbuf + 2*SEEDBYTES;

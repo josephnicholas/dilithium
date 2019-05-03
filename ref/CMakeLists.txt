@@ -27,10 +27,10 @@ if(STATIC AND NOT IOS)
 endif()
 
 set(dilithium_headers
-        config.h api.h params.h sign.h polyvec.h poly.h packing.h ntt.h reduce.h rounding.h symmetric.h aes256ctr.c)
+        config.h api.h params.h sign.h polyvec.h poly.h packing.h ntt.h reduce.h rounding.h symmetric.h randombytes.h)
 
 set(dilithium_sources
-        config.h api.h params.h sign.h polyvec.h poly.h packing.h ntt.h reduce.h rounding.h symmetric.h randombytes.h aes256ctr.h fips202.h)
+        sign.c polyvec.c poly.c packing.c ntt.c reduce.c rounding.c fips202.c aes256ctr.c randombytes.c)
 
 
 add_library(dilithium

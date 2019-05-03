@@ -5,7 +5,7 @@ set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_COMPILER "/usr/bin/cc")
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(NIST_FLAGS "-march=native -mtune=native -O3 -fomit-frame-pointer -fPIC")
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DMODE=3 -Wall -Wextra -march=native -mtune=native -O3 -fomit-frame-pointer ${NIST_FLAGS}")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c11 -D_GNU_SOURCE -DMODE=3 -Wall -Wextra -march=native -mtune=native -O3 -fomit-frame-pointer ${NIST_FLAGS}")
 
 if (APPLE AND NOT IOS)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=x86-64 -fvisibility=default")

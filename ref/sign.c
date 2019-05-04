@@ -94,7 +94,7 @@ void challenge(poly *c,
 *
 * Returns 0 (success)
 **************************************************/
-int crypto_sign_keypair(unsigned char *pk, unsigned char *sk, const unsigned char *seed) {
+int crypto_sign_dilithium_keypair(unsigned char *pk, unsigned char *sk, const unsigned char *seed) {
   unsigned int i;
   unsigned char seedbuf[3*SEEDBYTES];
   unsigned char tr[CRHBYTES];
@@ -105,7 +105,7 @@ int crypto_sign_keypair(unsigned char *pk, unsigned char *sk, const unsigned cha
   polyveck s2, t, t1, t0;
 
   /* Expand 32 bytes of randomness into rho, rhoprime and key */
-  memcpy(seedbuf, seed, SEEDBYTES);
+  shake256(seedbuf, 3*SEEDBYTES, seed, SEEDBYTES);
   rho = seedbuf;
   rhoprime = seedbuf + SEEDBYTES;
   key = seedbuf + 2*SEEDBYTES;
@@ -159,7 +159,7 @@ int crypto_sign_keypair(unsigned char *pk, unsigned char *sk, const unsigned cha
 *
 * Returns 0 (success)
 **************************************************/
-int crypto_sign(unsigned char *sm,
+int crypto_sign_dilithium(unsigned char *sm,
                 unsigned long long *smlen,
                 const unsigned char *m,
                 unsigned long long mlen,
@@ -283,7 +283,7 @@ int crypto_sign(unsigned char *sm,
 *
 * Returns 0 if signed message could be verified correctly and -1 otherwise
 **************************************************/
-int crypto_sign_open(unsigned char *m,
+int crypto_sign_dilithium_open(unsigned char *m,
                      unsigned long long *mlen,
                      const unsigned char *sm,
                      unsigned long long smlen,

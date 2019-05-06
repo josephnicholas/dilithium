@@ -17,7 +17,7 @@
 
 typedef struct {
     unsigned char   buffer[16];
-    int             buffer_pos;
+    unsigned int             buffer_pos;
     unsigned long   length_remaining;
     unsigned char   key[32];
     unsigned char   ctr[16];

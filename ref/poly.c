@@ -6,6 +6,7 @@
 #include "reduce.h"
 #include "rounding.h"
 #include "poly.h"
+#include <stdlib.h>
 
 #ifdef DBENCH
 extern const unsigned long long timing_overhead;
@@ -361,7 +362,8 @@ void poly_uniform(poly *a,
   unsigned int i, ctr, off;
   unsigned int nblocks = (769 + STREAM128_BLOCKBYTES)/STREAM128_BLOCKBYTES;
   unsigned int buflen = nblocks*STREAM128_BLOCKBYTES;
-  unsigned char buf[buflen + 2];
+  unsigned char *buf = (unsigned char *)malloc(buflen + 2);
+
   stream128_state state;
 
   stream128_init(&state, seed, nonce);
@@ -446,7 +448,7 @@ void poly_uniform_eta(poly *a,
   unsigned int nblocks = ((N/2 * (1U << SETABITS)) / (2*ETA + 1)
                           + STREAM128_BLOCKBYTES) / STREAM128_BLOCKBYTES;
   unsigned int buflen = nblocks*STREAM128_BLOCKBYTES;
-  unsigned char buf[buflen];
+  unsigned char *buf = (unsigned char *)malloc(buflen);
   stream128_state state;
 
   stream128_init(&state, seed, nonce);
@@ -529,7 +531,7 @@ void poly_uniform_gamma1m1(poly *a,
   unsigned int i, ctr, off;
   unsigned int nblocks = (641 + STREAM256_BLOCKBYTES) / STREAM256_BLOCKBYTES;
   unsigned int buflen = nblocks * STREAM256_BLOCKBYTES;
-  unsigned char buf[buflen + 4];
+  unsigned char *buf = (unsigned char *)malloc(buflen + 4);
   stream256_state state;
 
   stream256_init(&state, seed, nonce);

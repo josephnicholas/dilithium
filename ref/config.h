@@ -2,7 +2,7 @@
 #define CONFIG_H
 
 #ifndef MODE
-#define MODE 3
+#define MODE 1
 #endif
 
 //#define USE_AES

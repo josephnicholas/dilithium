@@ -3,7 +3,13 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <unistd.h>
-#include <sys/syscall.h>
+
+#ifdef _WIN32
+  #include <windows.h>
+#else
+  #include <sys/syscall.h>
+#endif
+
 #include "randombytes.h"
 
 #define _GNU_SOURCE

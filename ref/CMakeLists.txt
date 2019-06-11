@@ -8,6 +8,7 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c11 -D_GNU_SOURCE -DMODE=1 -Wall -Wextr
 
 if(NOT ARM)
   set(NIST_FLAGS "${NIST_FLAGS} -march=native -mtune=native") 
+endif()
 
 find_package(OpenSSL REQUIRED)
 

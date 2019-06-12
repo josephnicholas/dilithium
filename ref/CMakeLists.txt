@@ -3,7 +3,7 @@ project(dilithium)
 
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
-set(NIST_FLAGS "-march=native -mtune=native -O3 -fomit-frame-pointer -fPIC")
+set(NIST_FLAGS "-O3 -fomit-frame-pointer -fPIC")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c11 -D_GNU_SOURCE -DMODE=1 -Wall -Wextra -march=native -mtune=native -O3 -fomit-frame-pointer ${NIST_FLAGS}")
 
 find_package(OpenSSL REQUIRED)
